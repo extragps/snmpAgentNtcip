@@ -42,6 +42,10 @@ import org.snmp4j.smi.Variable;
 
 public class MaMatrice extends JPanel implements MouseListener, MOChangeListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nbPixelX=48;
 	private int nbPixelY=32;
 	private int nbPixelCarteX=16;
