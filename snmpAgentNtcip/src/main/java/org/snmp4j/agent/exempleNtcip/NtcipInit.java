@@ -152,6 +152,7 @@ public class NtcipInit {
 		MessageFormat mf=new MessageFormat(
 				"{0}_{1,number,000}.bmp");
 		String nomImage=MessageFormat.format("{0,number}x{1,number}/{2}_{3,number,000}.bmp",width,height,prefixe,number);
+		byte couleur[]= {0,0,0};
 		Variable tableau[]= {
 				new Integer32(graphicIndex),
 				new Integer32(number),
@@ -161,7 +162,7 @@ public class NtcipInit {
 				new Integer32(4),
 				new Integer32(number),
 				new Integer32(0),
-				new Integer32(0),
+				new OctetString(couleur),
 				new Integer32(Ntcip12032005.DmsGraphicStatusEnum.readyForUse)
 		};
 		ntcip.getDmsGraphicEntry().addNewRow(new OID().append(graphicIndex),tableau);
