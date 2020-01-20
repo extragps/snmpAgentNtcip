@@ -1,1 +1,3 @@
 /bin/
+*.cfg
+SampleAgent.bc
