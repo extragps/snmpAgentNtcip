@@ -518,7 +518,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 
 	private	StringBuffer buffer=new StringBuffer();
 	private Rectangle2D rect=null;
-	private Map<Rectangle2D,String> map=new HashMap<Rectangle2D,String>();
 	
 
 	private MaPage getLastPage(ArrayList<MaPage> pages) {
