@@ -12,7 +12,7 @@ public class MaPage {
 	/**
 	 * Changement de la valeur par defaut de la duree a off. 
 	 */
-	private int dureeOff=99;
+	private int dureeOff=0;
 	private ArrayList<MonGraphique> listeGraphique=new ArrayList<MonGraphique>();
 	private ArrayList<MonTexte> listeTexte=new ArrayList<MonTexte>();
 	public MaPage(int on,int off) {
