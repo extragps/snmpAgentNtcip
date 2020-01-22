@@ -2,6 +2,11 @@ package org.snmp4j.agent.exempleNtcip.ui;
 
 import java.util.ArrayList;
 
+/**
+ * @author xgaillard
+ *
+ * Ajout d'un autre commentaire javadoc qui doit produire une erreur de commit.
+ */
 public class MaPage {
 	private int dureeOn=500;
 	private int dureeOff=0;
