@@ -2,6 +2,13 @@ package org.snmp4j.agent.exempleNtcip.ui;
 
 import java.util.ArrayList;
 
+/**
+ * @author xgaillard
+ * 
+ * La classe contient les informations necessaires a l'affichage d'une page dans le simulateur
+ * ntcip.
+ * 
+ */
 public class MaPage {
 	private int dureeOn=500;
 	private int dureeOff=0;
