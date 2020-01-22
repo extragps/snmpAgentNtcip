@@ -113,7 +113,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
 		Graphics2D g2 = (Graphics2D) g;
 		super.paint(g);
 		{
@@ -133,7 +132,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 				}
 			}
 		}
-
 		g2.setColor(Color.white);
 		for (int x = 0; x < (nbPixelX * nbPixPoint) / (16 * nbPixPoint); x++) {
 			for (int y = 0; y < (nbPixelY * nbPixPoint) / (nbPixPoint * 8); y++) {
@@ -171,7 +169,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 	private void displayTexte(MonTexte texte, Graphics2D g2) {
 		Rectangle2D rect = texte.getRect();
 		String buffer = texte.getChaine();
-
 		int size = 16;
 		float posX = 0;
 		float posY = 0;
@@ -181,8 +178,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 			posY = (float) rect.getY();
 		}
 		g2.setFont(new Font("Monaco", Font.PLAIN, size * nbPixPoint));
-		System.out.println("Afficher " + buffer + " en " + (float) (posX * nbPixPoint) + "x"
-				+ (float) ((posY + size) * nbPixPoint));
 		g2.drawString(buffer, (float) (posX * nbPixPoint), (float) ((posY + size) * nbPixPoint));
 	}
 
