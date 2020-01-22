@@ -116,12 +116,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 		// TODO Auto-generated method stub
 		Graphics2D g2 = (Graphics2D) g;
 		super.paint(g);
-//		BufferedImage img = null;
-//		try {
-//		    img = ImageIO.read(new File("strawberry.jpg"));
-//			g2.drawImage(img, 1, 1, nbPixelX*nbPixPoint, nbPixelY*nbPixPoint,null);
-//		} catch (IOException e) {
-//		}		
 		{
 			Rectangle2D rect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
 			g2.setColor(Color.black);
@@ -131,11 +125,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 		Font font = new Font("Monaco", Font.PLAIN, 16 * nbPixPoint);
 
 		g2.setFont(font);
-//		FontMetrics fontMetrics = g2.getFontMetrics();
-
-		// Draw a string such that its base line is at x, y
-
-//		if (null != aAfficher) {
 		if(false==pageOff) {
 			if (0 != pages.size()) {
 				if ((0 <= pageCour) && (pageCour < pages.size())) {
@@ -144,13 +133,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 				}
 			}
 		}
-//		}
-
-		// Draw a string such that the top-left corner is at x, y
-
-//		  if(-1!=numMessage) {
-//		  g2.drawString("Message "+numMessage, 1, 16*nbPixPoint+fontMetrics.getAscent());
-//		  }
 
 		g2.setColor(Color.white);
 		for (int x = 0; x < (nbPixelX * nbPixPoint) / (16 * nbPixPoint); x++) {
@@ -270,6 +252,7 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 	private void addPixelDefault(Point2D point) {
 		int lastRow=ntcip.getPixelFailureTableNumRows().getValue().toInt();
 		int shortError=ntcip.getShortErrorStatus().getValue().toInt();
+		/* Par defaut, on met une valeur a 7 pour le defaut pixel. */
 		Variable values[]= {
 				new Integer32(2),
 				new Integer32(lastRow+1),
