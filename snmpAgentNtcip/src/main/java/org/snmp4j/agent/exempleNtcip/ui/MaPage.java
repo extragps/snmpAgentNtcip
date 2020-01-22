@@ -9,7 +9,10 @@ import java.util.ArrayList;
  */
 public class MaPage {
 	private int dureeOn=500;
-	private int dureeOff=0;
+	/**
+	 * Changement de la valeur par defaut de la duree a off. 
+	 */
+	private int dureeOff=100;
 	private ArrayList<MonGraphique> listeGraphique=new ArrayList<MonGraphique>();
 	private ArrayList<MonTexte> listeTexte=new ArrayList<MonTexte>();
 	public MaPage(int on,int off) {
