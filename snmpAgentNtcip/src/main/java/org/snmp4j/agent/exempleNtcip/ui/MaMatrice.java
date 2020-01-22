@@ -177,7 +177,7 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 			posX = (float) rect.getX();
 			posY = (float) rect.getY();
 		}
-		g2.setFont(new Font("Monaco", Font.PLAIN, size * nbPixPoint));
+		g2.setFont(new Font("Courier", Font.BOLD, size * nbPixPoint));
 		g2.drawString(buffer, (float) (posX * nbPixPoint), (float) ((posY + size) * nbPixPoint));
 	}
 
