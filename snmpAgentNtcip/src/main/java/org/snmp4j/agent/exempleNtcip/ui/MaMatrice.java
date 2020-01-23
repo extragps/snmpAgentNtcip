@@ -99,8 +99,8 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 	{
 		JFrame maFrame=new JFrame();
 		String aAfficher=
-				"[pt100o5][tr91,13,288,16][sc5]BIDULE[tr91,42,288,16][sc5]SECOND[g23,15,1]"+
-				"[pt100o5][tr91,13,288,16][sc5]TRUC[tr91,42,288,16][sc5]CHOUETTE[g41,5,1]";
+				"[pt100o5][tr91,13,288,16][sc5]PREMIER[tr91,42,288,16][sc5]SECOND[g23,15,1]"+
+				"[pt100o5][tr91,13,288,16][sc5]MESSAGE[tr91,42,288,16][sc5]CHOUETTE[g41,5,1]";
 		MaMatrice matrice=new MaMatrice(null);
 		matrice.addMouseListener(matrice);
 		matrice.processChaineAffichee(aAfficher);
