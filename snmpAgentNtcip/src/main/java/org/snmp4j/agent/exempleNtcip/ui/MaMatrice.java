@@ -121,7 +121,7 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 			g2.fill(rect);
 		}
 		g2.setColor(new Color(0xFFC009));
-		Font font = new Font("Monaco", Font.PLAIN, 16 * nbPixPoint);
+		Font font = new Font("Courier", Font.PLAIN, 16 * nbPixPoint);
 
 		g2.setFont(font);
 		if(false==pageOff) {
