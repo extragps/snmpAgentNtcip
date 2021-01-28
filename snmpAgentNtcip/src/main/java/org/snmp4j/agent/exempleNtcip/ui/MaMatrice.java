@@ -409,6 +409,9 @@ public class MaMatrice extends JPanel implements MouseListener,Runnable {
 			case 166:
 				buffer.append("#");
 				break;
+			case 199:
+				buffer.append("~");
+				break;
 			default:
 				buffer.append("_");
 				break;
