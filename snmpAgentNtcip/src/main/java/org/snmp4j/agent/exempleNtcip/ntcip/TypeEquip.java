@@ -6,5 +6,12 @@ public enum TypeEquip {
 	PMV,
 	B14,
 	INFO,
+	PMV2,
+	PMV3,
+	PANNONCEAU,
+	TYPE1,
+	TYPE2,
+	TYPE3,
+	TYPE4,
 	UNKNOWN
 }

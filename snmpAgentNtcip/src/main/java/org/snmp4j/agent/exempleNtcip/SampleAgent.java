@@ -20,7 +20,6 @@
 
 package org.snmp4j.agent.exempleNtcip;
 
-import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,8 +33,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import org.snmp4j.MessageDispatcher;
 import org.snmp4j.MessageDispatcherImpl;
@@ -47,16 +44,13 @@ import org.snmp4j.agent.MOServer;
 import org.snmp4j.agent.cfg.EngineBootsCounterFile;
 import org.snmp4j.agent.exempleNtcip.ntcip.TypeEquip;
 import org.snmp4j.agent.exempleNtcip.ui.MaMatrice;
+import org.snmp4j.agent.exempleNtcip.ui.MonPanneau;
 import org.snmp4j.agent.io.DefaultMOPersistenceProvider;
 import org.snmp4j.agent.io.MOInput;
 import org.snmp4j.agent.io.MOInputFactory;
 import org.snmp4j.agent.io.prop.PropertyMOInput;
 import org.snmp4j.agent.mo.DefaultMOFactory;
 import org.snmp4j.agent.mo.MOFactory;
-import org.snmp4j.agent.mo.MOMutableTableRow;
-import org.snmp4j.agent.mo.MOTableRowEvent;
-import org.snmp4j.agent.mo.MOTableRowListener;
-import org.snmp4j.agent.mo.snmp.TimeStamp;
 import org.snmp4j.agent.mo.snmp.dh.DHKickstartParameters;
 import org.snmp4j.agent.mo.snmp.dh.DHKickstartParametersImpl;
 import org.snmp4j.log.ConsoleLogFactory;
@@ -66,14 +60,10 @@ import org.snmp4j.log.LogLevel;
 import org.snmp4j.mp.MPv3;
 import org.snmp4j.security.SecurityProtocols;
 import org.snmp4j.smi.Address;
-import org.snmp4j.smi.Counter32;
 import org.snmp4j.smi.DtlsAddress;
 import org.snmp4j.smi.GenericAddress;
-import org.snmp4j.smi.Integer32;
-import org.snmp4j.smi.OID;
 import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.TlsAddress;
-import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DTLSTM;
 import org.snmp4j.transport.TLSTM;
 import org.snmp4j.transport.TransportMappings;
@@ -148,13 +138,27 @@ public class SampleAgent {
             	typeEquip=TypeEquip.INFO;
             } else if ( (typeName.equalsIgnoreCase("pmv"))  ) {
             	typeEquip=TypeEquip.PMV;
+            } else if ( (typeName.equalsIgnoreCase("pannonceau"))  ) {
+            	typeEquip=TypeEquip.TYPE4;
+            } else if ( (typeName.equalsIgnoreCase("pmv2"))  ) {
+            	typeEquip=TypeEquip.PMV2;
+            } else if ( (typeName.equalsIgnoreCase("pmv3"))  ) {
+            	typeEquip=TypeEquip.PMV3;
+            } else if ( (typeName.equalsIgnoreCase("type1"))  ) {
+            	typeEquip=TypeEquip.TYPE1;
+            } else if ( (typeName.equalsIgnoreCase("type2"))  ) {
+            	typeEquip=TypeEquip.TYPE2;
+            } else if ( (typeName.equalsIgnoreCase("type3"))  ) {
+            	typeEquip=TypeEquip.TYPE3;
+            } else if ( (typeName.equalsIgnoreCase("type4"))  ) {
+            	typeEquip=TypeEquip.TYPE4;
             } else if ( (typeName.equalsIgnoreCase("b14"))  ) {
             	typeEquip=TypeEquip.B14;
             }
         	
         }
         if(args.containsKey("address")) {
-        	adresseServeur=args.get("address").toString();
+        	adresseServeur=args.get("address").toString()+" "+typeEquip;
         }
 
         final Properties props = new Properties();
@@ -279,7 +283,7 @@ public class SampleAgent {
      */
     private void startFrame() {
     	JFrame frame=new JFrame();
-    	MaMatrice matrice=NtcipInit.init(typeEquip,getModules().getNtcip12032005());
+    	MonPanneau matrice=NtcipInit.init(typeEquip,getModules().getNtcip12032005());
     	frame.add(matrice);
     	frame.setTitle(adresseServeur);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1706,7 +1706,7 @@ implements MOGroup
                              new Integer32());
     shortErrorStatus = 
       moFactory.createScalar(oidShortErrorStatus,
-                             moFactory.createAccess(MOAccessImpl.ACCESSIBLE_FOR_READ_ONLY), 
+                             moFactory.createAccess(MOAccessImpl.ACCESSIBLE_FOR_READ_WRITE), 
                              new Integer32());
     pixelFailureTableNumRows = 
       moFactory.createScalar(oidPixelFailureTableNumRows,
@@ -2179,6 +2179,46 @@ implements MOGroup
     return dmsStatDoorOpen;
   }
   public MOScalar<Integer32> getShortErrorStatus() {
+//	  int errorStatus=0;
+//	  if(0!=getDmsPowerNumRows().getValue().toInt()) {
+//		  errorStatus|=(1<<5);
+//	  }
+//	  for(int numClimate=0;numClimate<getDmsClimateCtrlNumRows().getValue().toInt();numClimate++) {
+//		  int status=getDmsClimateCtrlStatusEntry().getModel().getRow(new OID().append(numClimate)).getDmsClimateCtrlErrorStatus().getValue();
+//		 if(3==status) {
+//			 errorStatus|=(1<<10);
+//			 break;
+//		 }
+//	  }
+//	  for(int numPower=0;numPower<getDmsPowerNumRows().getValue().toInt();numPower++) {
+//		  int status=getDmsPowerStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsPowerStatus().getValue();
+//		 if(3==status) {
+//			 errorStatus|=(1<<2);
+//			 break;
+//		 }
+//	  }
+//	  for(int numPower=0;numPower<getDmsTempSensorNumRows().getValue().toInt();numPower++) {
+//		  int current=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorCurrentReading().getValue();
+//		  int high=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorHighWarningTemperature().getValue();
+//		  int low=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorLowWarningTemperature().getValue();
+//		  if((current<low)||(current>high)) {
+//			 errorStatus|=(1<<9);
+//			 break;
+//		  }
+//	  }
+//	  for(int numPower=0;numPower<getDmsTempSensorNumRows().getValue().toInt();numPower++) {
+//		  int current=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorCurrentReading().getValue();
+//		  int high=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorHighCriticalTemperature().getValue();
+//		  int low=getDmsTempSensorStatusEntry().getModel().getRow(new OID().append(numPower)).getDmsTempSensorLowCriticalTemperature().getValue();
+//		  if((current<low)||(current>high)) {
+//			 errorStatus|=(1<<11);
+//			 break;
+//		  }
+//	  }
+//	  if(0!=getPixelFailureTableNumRows().getValue().toInt()) {
+//		 errorStatus|=(1<<5);
+//	  }
+//	shortErrorStatus.setValue(new Integer32(errorStatus));
     return shortErrorStatus;
   }
   public MOScalar<Integer32> getPixelFailureTableNumRows() {

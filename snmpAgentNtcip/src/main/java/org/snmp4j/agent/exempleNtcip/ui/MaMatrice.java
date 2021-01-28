@@ -42,7 +42,7 @@ import org.snmp4j.smi.OID;
 import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.Variable;
 
-public class MaMatrice extends JPanel implements MouseListener, MOChangeListener,Runnable {
+public class MaMatrice extends JPanel implements MouseListener,Runnable {
 	
 	/**
 	 * 
@@ -120,7 +120,17 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 			g2.setColor(Color.black);
 			g2.fill(rect);
 		}
-		g2.setColor(new Color(0xFFC009));
+		OctetString var=(OctetString)ntcip.getDefaultForegroundRGB().getValue();
+
+		try {
+			g2.setColor(new Color((var.get(0)+256)%256,(var.get(1)+256)%256,(var.get(2)+256)%256));
+		} catch (ArrayIndexOutOfBoundsException aioobe) {
+			byte val[]= {0x7F,0,0};
+			OctetString os=new OctetString(val);
+			ntcip.getDefaultForegroundRGB().setValue(os) ;
+			g2.setColor(Color.yellow);
+			
+		}
 		Font font = new Font("Courier", Font.PLAIN, 16 * nbPixPoint);
 
 		g2.setFont(font);
@@ -133,10 +143,10 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 			}
 		}
 		g2.setColor(Color.white);
-		for (int x = 0; x < (nbPixelX * nbPixPoint) / (16 * nbPixPoint); x++) {
+		for (int x = 0; x < (nbPixelX * nbPixPoint) / (8 * nbPixPoint); x++) {
 			for (int y = 0; y < (nbPixelY * nbPixPoint) / (nbPixPoint * 8); y++) {
-				Rectangle2D rect = new Rectangle2D.Double(x * 16 * nbPixPoint, y * 8 * nbPixPoint,
-						Math.min(16 * nbPixPoint, getWidth() - x * 16 * nbPixPoint),
+				Rectangle2D rect = new Rectangle2D.Double(x * 8 * nbPixPoint, y * 8 * nbPixPoint,
+						Math.min(8. * nbPixPoint, getWidth() - x * 8 * nbPixPoint),
 						Math.min(8. * nbPixPoint, getHeight() - 8 * nbPixPoint));
 				g2.draw(rect);
 			}
@@ -343,52 +353,6 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void beforePrepareMOChange(MOChangeEvent changeEvent) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void afterPrepareMOChange(MOChangeEvent changeEvent) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void beforeMOChange(MOChangeEvent changeEvent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void afterMOChange(MOChangeEvent changeEvent) {
-		// TODO Auto-generated method stub
-		if (changeEvent.getNewValue() instanceof OctetString) {
-			OctetString actMess = (OctetString) changeEvent.getNewValue();
-
-			if (null != ntcip) {
-				int typeMessage = (int) actMess.get(3);
-				int numMessage = (int) actMess.get(5);
-				DmsMessageEntryRow row = ntcip.getDmsMessageEntry().getModel()
-						.getRow(new OID().append(typeMessage).append(numMessage));
-				if (null != row) {
-					String chaineAAfficher = row.getDmsMessageMultiString().toString();
-//					aAfficher = chaineAAfficher;
-					DmsMessageEntryRow currentMessage = ntcip.getDmsMessageEntry().getModel()
-							.getRow(new OID().append(Ntcip12032005.DmsMessageMemoryTypeEnum.currentBuffer).append(1));
-					if (null != currentMessage) {
-						currentMessage.setDmsMessageCRC(row.getDmsMessageCRC());
-						currentMessage.setDmsMessageMultiString(row.getDmsMessageMultiString());
-						currentMessage.setDmsMessageRunTimePriority(row.getDmsMessageRunTimePriority());
-					}
-					ntcip.getDmsActivateMsgError().setValue(new Integer32(Ntcip12032005.DmsActivateMsgErrorEnum.none));
-					processChaineAffichee(chaineAAfficher);
-				}
-			}
-
-			repaint();
-		}
-
-	}
 
 	private void processPattern2(String group,ArrayList<MaPage> pages) {
 		if(group.startsWith("g")) {
@@ -438,11 +402,21 @@ public class MaMatrice extends JPanel implements MouseListener, MOChangeListener
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+		} else if(group.startsWith("hc")) {
+			int value=Integer.parseInt(group.substring(2,4),16);
+			System.out.println("La valeur courante est "+value);
+			switch(value) {
+			case 166:
+				buffer.append("#");
+				break;
+			default:
+				buffer.append("_");
+				break;
+			}
 		}
 
 	}
-	private void processChaineAffichee(String chaineAMatcher) {
+	void processChaineAffichee(String chaineAMatcher) {
 		ArrayList<MaPage> listePages=new ArrayList<MaPage>();
 		
 		Pattern pattern = Pattern.compile("\\[(.*?)\\]");
