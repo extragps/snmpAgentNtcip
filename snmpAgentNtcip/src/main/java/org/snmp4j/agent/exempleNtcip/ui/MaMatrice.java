@@ -293,7 +293,7 @@ public class MaMatrice extends JPanel implements MouseListener,Runnable {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getButton()==MouseEvent.BUTTON1) {
-			System.out.println("Bouton appuy� "+e.getX()+"x"+e.getY());
+			System.out.println("Bouton appuyé "+e.getX()+"x"+e.getY());
 			Point2D point=new Point2D.Double(e.getX()/nbPixPoint,e.getY()/nbPixPoint);
 			Integer index=listeDefauts.get(point);
 			if(null!=index) {
@@ -411,6 +411,12 @@ public class MaMatrice extends JPanel implements MouseListener,Runnable {
 				break;
 			case 199:
 				buffer.append("~");
+				break;
+			case 174:
+				buffer.append("→");
+				break;
+			case 172:
+				buffer.append("←");
 				break;
 			default:
 				buffer.append("_");
